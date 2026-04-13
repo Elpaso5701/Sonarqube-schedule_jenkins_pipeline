@@ -76,9 +76,9 @@ This Jenkins pipeline automates:
 
 
 Choose which projects to scan:
-- **ALL** - Scan both or2light and master
-- **one** - Scan only or2light project
-- **two** - Scan only master project
+- **ALL** - Scan both one and two
+- **one** - Scan only one two
+- **two** - Scan only two project
 
 ### 2️⃣ SKIP_SONAR
 
@@ -173,7 +173,7 @@ markdown
 ## 🎯 Description
 
 This Jenkins pipeline automates:
-- **Multi-project scanning** (or2light, master projects)
+- **Multi-project scanning** (one, two projects)
 - **Maven builds** with Confluent repository support
 - **SonarQube analysis** for code quality metrics
 - **Scheduled execution** (Every Monday at 06:00 UTC)
@@ -193,8 +193,8 @@ This Jenkins pipeline automates:
 
 ### ✅ Multi-Project Support
 - **ALL** - Scan both projects
-- **or2light** - Scan or2light project only
-- **master** - Scan master project only
+- **one** - Scan one project only
+- **two** - Scan two project only
 
 ### ✅ Flexible Execution Modes
 - **Build + Scan** - Full Maven build with SonarQube analysis
@@ -202,8 +202,8 @@ This Jenkins pipeline automates:
 - **SonarQube Only** - Analysis without rebuilding
 
 ### ✅ Java Version Support
-- or2light: **Java 17** (Amazon Corretto)
-- master: **Java 11** (Amazon Corretto)
+- one: **Java 17** (Amazon Corretto)
+- two: **Java 11** (Amazon Corretto)
 
 ### ✅ Confluent Repository Integration
 - HTTPS support with Maven mirror configuration
@@ -234,15 +234,15 @@ This Jenkins pipeline automates:
 ## 📝 Pipeline Parameters
 
 ### 1️⃣ PROJECT Selection
-Choice: ['ALL', 'or2light', 'master'] Default: ALL
+Choice: ['ALL', 'one', 'two'] Default: ALL
 
 
 
 
 Choose which projects to scan:
-- **ALL** - Scan both or2light and master
-- **or2light** - Scan only or2light project
-- **master** - Scan only master project
+- **ALL** - Scan both one and two
+- **one** - Scan only one project
+- **two** - Scan only two project
 
 ### 2️⃣ SKIP_SONAR
 Boolean: true/false Default: false
@@ -274,7 +274,7 @@ Edit the `projects` map in the pipeline:
 
 ```groovy
 def projects = [
-    'or2light': [
+    'one': [
         sonarKey: 'your_sonar_key',           // ✅ Set your SonarQube project key
         gitUrl: 'your_git_url',               // ✅ Set your Git repository URL
         branch: 'your_branch',                // ✅ Set your branch name
@@ -283,7 +283,7 @@ def projects = [
         excludeModules: '',                   // Modules to exclude (optional)
         javaHome: '/usr/lib/jvm/java-17-amazon-corretto'
     ],
-    'master': [
+    'two': [
         sonarKey: 'your_sonar_key',
         gitUrl: 'your_git_url',
         branch: 'your_branch',
@@ -342,7 +342,7 @@ Reports SonarQube analysis results and links to dashboard.
 Manual Trigger
 
 1. Jenkins Dashboard → [Pipeline Name] → Build with Parameters
-2. Select PROJECT (ALL, or2light, or master)
+2. Select PROJECT (ALL, one, or two)
 3. Configure SKIP_SONAR and SONAR_ONLY
 4. Click Build
 
